@@ -1,0 +1,821 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title></title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="2487">
+  <style type="text/css">
+    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; -webkit-text-stroke: #000000}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; -webkit-text-stroke: #000000; min-height: 14.0px}
+    span.s1 {font-kerning: none}
+  </style>
+</head>
+<body>
+<p class="p1"><span class="s1">&lt;!doctype html&gt;</span></p>
+<p class="p1"><span class="s1">&lt;html lang="ko"&gt;</span></p>
+<p class="p1"><span class="s1">&lt;head&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;meta charset="utf-8" /&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;meta name="viewport" content="width=device-width,initial-scale=1" /&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;title&gt;Valentine’s Chocolates — Open &amp; Taste&lt;/title&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;meta name="description" content="초콜릿을 하나씩 열어 편지를 확인하고, 시식평을 저장하는 발렌타인데이 페이지" /&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;style&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>:root{</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>--ink:#2a1b1f;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>--cream:#fff7f2;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>--rose:#d64a6a;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>--rose2:#ffb8c8;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>--velvet1:#3b0b1f;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>--velvet2:#14040a;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>--shadow: 0 18px 60px rgba(0,0,0,.35);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>--softShadow: 0 10px 30px rgba(0,0,0,.22);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>--radius: 22px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>*{box-sizing:border-box}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>html,body{height:100%}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>body{</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>margin:0;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>color:var(--ink);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>font-family: ui-sans-serif, system-ui, -apple-system, "Apple SD Gothic Neo",</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                   </span>"Noto Sans KR", Segoe UI, Roboto, Helvetica, Arial;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>overflow-x:hidden;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>background:</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>radial-gradient(1200px 800px at 20% 10%, rgba(255,255,255,.10), transparent 60%),</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>radial-gradient(900px 700px at 80% 20%, rgba(255,255,255,.08), transparent 55%),</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>linear-gradient(140deg, var(--velvet1), var(--velvet2));</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>/* 배경: 벨벳 천 이미지 + 오버레이 */</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.bg{</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>position:fixed; inset:0;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>pointer-events:none;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>background-image:</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>radial-gradient(1200px 800px at 30% 20%, rgba(255,255,255,.10), transparent 60%),</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>radial-gradient(900px 700px at 75% 55%, rgba(255,255,255,.08), transparent 55%),</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>url("assets/bg.jpg");</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>background-size: cover;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>background-position: center;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>filter: saturate(1.05) contrast(1.05) brightness(.92);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>opacity:.55;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>mix-blend-mode: overlay;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.grain{</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>position:fixed; inset:-20%;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>pointer-events:none;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='.20'/%3E%3C/svg%3E");</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>transform: rotate(8deg);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>opacity:.18;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>mix-blend-mode: soft-light;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.wrap{</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>position:relative;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>min-height:100%;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>display:flex;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>flex-direction:column;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>gap:18px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>padding: 28px 18px 110px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>max-width: 1100px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>margin: 0 auto;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>header{</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>display:flex;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>align-items:flex-end;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>justify-content:space-between;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>gap:16px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>padding: 10px 6px 0;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.title{display:flex; flex-direction:column; gap:6px;}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>h1{</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>margin:0;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>font-size: clamp(22px, 2.6vw, 36px);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>letter-spacing: -.02em;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>color: rgba(255,255,255,.92);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>text-shadow: 0 8px 24px rgba(0,0,0,.35);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.sub{</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>margin:0;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>color: rgba(255,255,255,.78);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>font-size: 14px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>line-height: 1.4;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.progress{</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>display:flex;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>align-items:center;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>gap:10px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>color: rgba(255,255,255,.8);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>font-size: 13px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>user-select:none;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>white-space:nowrap;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.pill{</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>padding: 8px 10px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>border-radius: 999px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>background: rgba(255,255,255,.12);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>backdrop-filter: blur(10px);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>border: 1px solid rgba(255,255,255,.16);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>box-shadow: 0 12px 30px rgba(0,0,0,.18);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>/* 초콜릿 박스 무대 */</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.boxStage{</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>position:relative;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>border-radius: calc(var(--radius) + 10px);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>overflow:hidden;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>box-shadow: var(--shadow);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>border: 1px solid rgba(255,255,255,.18);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>background:</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>linear-gradient(180deg, rgba(255,255,255,.06), rgba(0,0,0,.20)),</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>url("assets/box.jpg");</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>background-size: cover;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>background-position: center;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>min-height: 520px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.boxOverlay{</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>position:absolute; inset:0;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>background:</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>radial-gradient(800px 520px at 30% 20%, rgba(255,255,255,.18), transparent 60%),</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>radial-gradient(700px 520px at 80% 60%, rgba(255,255,255,.10), transparent 60%),</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>linear-gradient(180deg, rgba(0,0,0,.20), rgba(0,0,0,.45));</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>pointer-events:none;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.grid{</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>position:relative;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>padding: 26px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>display:grid;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>grid-template-columns: repeat(4, minmax(0, 1fr));</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>gap: 16px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>@media (max-width: 820px){</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>.grid{grid-template-columns: repeat(3, 1fr)}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>.boxStage{min-height: 640px}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>@media (max-width: 520px){</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>.grid{grid-template-columns: repeat(2, 1fr)}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>.boxStage{min-height: 720px}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>/* 초콜릿 카드 */</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.choco{</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>position:relative;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>height: 120px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>border-radius: 18px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>cursor:pointer;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>user-select:none;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>transition: transform .22s ease, filter .22s ease;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>background: rgba(255,255,255,.08);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>border: 1px solid rgba(255,255,255,.14);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>box-shadow: 0 14px 35px rgba(0,0,0,.25);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>overflow:hidden;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.choco:hover{ transform: translateY(-3px) scale(1.01); filter: brightness(1.03); }</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.choco:active{ transform: translateY(0) scale(.99); }</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.choco img{</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>width:100%; height:100%;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>object-fit: cover;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>display:block;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>transform: scale(1.02);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>filter: saturate(1.03) contrast(1.02);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.choco .label{</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>position:absolute;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>inset:auto 10px 10px 10px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>display:flex;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>justify-content:space-between;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>align-items:center;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>gap:10px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>color: rgba(255,255,255,.92);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>font-size: 12px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>text-shadow: 0 10px 26px rgba(0,0,0,.55);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.badge{</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>padding: 6px 10px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>border-radius: 999px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>background: rgba(0,0,0,.25);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>border: 1px solid rgba(255,255,255,.16);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>backdrop-filter: blur(8px);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.openedTag{</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>padding: 6px 10px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>border-radius: 999px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>background: rgba(214,74,106,.28);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>border: 1px solid rgba(255,184,200,.42);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>display:none;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.choco[data-open="true"] .openedTag{display:inline-flex}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>/* 편지 팝업 */</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.letterWrap{</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>position:absolute;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>left: 12px; right: 12px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>top: 12px; bottom: 12px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>pointer-events:none;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.letter{</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>position:absolute;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>left:0; right:0;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>bottom: -110%;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>margin:auto;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>border-radius: 16px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>background: linear-gradient(180deg, rgba(255,255,255,.96), rgba(255,248,242,.92));</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>border: 1px solid rgba(0,0,0,.08);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>box-shadow: var(--softShadow);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>padding: 14px 14px 12px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>transform: rotate(-1.2deg);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>opacity:0;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.letter:before{</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>content:"";</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>position:absolute; inset:0;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>border-radius: 16px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>background:</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>radial-gradient(320px 160px at 25% 20%, rgba(214,74,106,.12), transparent 60%),</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>radial-gradient(320px 160px at 75% 75%, rgba(255,184,200,.12), transparent 60%);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>pointer-events:none;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>mix-blend-mode:multiply;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>opacity:.7;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.letter h3{</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>position:relative;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>margin: 0 0 8px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>font-size: 14px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>display:flex;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>align-items:center;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>gap:8px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.heartDot{</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>width:10px; height:10px; border-radius: 999px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>background: radial-gradient(circle at 30% 30%, #fff, #ffb8c8 50%, #d64a6a);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>box-shadow: 0 6px 14px rgba(214,74,106,.35);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.letter p{</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>position:relative;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>margin: 0;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>font-size: 13px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>line-height: 1.45;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>color: rgba(42,27,31,.92);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>white-space: pre-wrap;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.hint{</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>position:relative;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>margin-top: 10px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>font-size: 11px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>color: rgba(42,27,31,.62);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>display:flex;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>justify-content:space-between;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>gap:8px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.kbd{</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono";</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>font-size: 11px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>padding: 2px 7px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>border-radius: 999px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>border: 1px solid rgba(0,0,0,.12);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>background: rgba(255,255,255,.7);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>@keyframes popOut{</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>0%{ bottom:-120%; opacity:0; transform: translateY(0) rotate(-1.2deg) scale(.98); }</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>60%{ bottom: 10%; opacity:1; transform: translateY(-6px) rotate(.6deg) scale(1.02); }</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>100%{ bottom: 6%; opacity:1; transform: translateY(0) rotate(.2deg) scale(1); }</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.choco[data-open="true"]{ filter: grayscale(.12) brightness(.95); }</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.choco[data-open="true"] .letter{ animation: popOut .62s cubic-bezier(.2,.85,.25,1) forwards; }</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.choco[data-open="true"].settled .letter{</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>bottom: 6%;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>opacity:1;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>transform: rotate(.2deg);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.shine{</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>position:absolute; inset:-40% -40% auto auto;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>width: 120px; height: 120px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>background: radial-gradient(circle at 30% 30%, rgba(255,255,255,.45), transparent 60%);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>transform: rotate(25deg);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>opacity:.35;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>pointer-events:none;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>/* 리뷰 섹션 */</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.reviewArea{</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>margin-top: 18px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>border-radius: calc(var(--radius) + 6px);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>overflow:hidden;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>border: 1px solid rgba(255,255,255,.16);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>box-shadow: var(--shadow);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>background: rgba(255,255,255,.08);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>backdrop-filter: blur(10px);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>display:none;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.reviewHead{</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>padding: 16px 18px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>display:flex;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>align-items:center;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>justify-content:space-between;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>gap:10px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>background: linear-gradient(180deg, rgba(0,0,0,.12), rgba(0,0,0,.20));</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>color: rgba(255,255,255,.92);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.reviewHead strong{font-size: 14px}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.reviewBody{</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>padding: 16px 18px 18px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>background: linear-gradient(180deg, rgba(255,255,255,.10), rgba(0,0,0,.18));</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>color: rgba(255,255,255,.88);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.stars{display:flex; gap:10px; align-items:center; flex-wrap:wrap; margin-bottom: 12px;}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.starRow{display:flex; gap:6px; align-items:center;}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.starBtn{</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>width: 34px; height: 34px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>border-radius: 999px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>border: 1px solid rgba(255,255,255,.22);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>background: rgba(0,0,0,.18);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>color: rgba(255,255,255,.9);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>cursor:pointer;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>display:grid; place-items:center;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>transition: transform .12s ease, background .12s ease;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.starBtn:hover{ transform: translateY(-1px); background: rgba(214,74,106,.22); }</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.starBtn.active{ background: rgba(214,74,106,.30); border-color: rgba(255,184,200,.45); }</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>textarea{</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>width:100%;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>min-height: 110px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>resize: vertical;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>border-radius: 16px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>padding: 12px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>border: 1px solid rgba(255,255,255,.18);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>background: rgba(0,0,0,.18);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>color: rgba(255,255,255,.92);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>outline:none;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>textarea::placeholder{ color: rgba(255,255,255,.55); }</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.actions{</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>margin-top: 12px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>display:flex;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>justify-content:space-between;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>align-items:center;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>gap:10px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>flex-wrap:wrap;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.btn{</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>padding: 10px 12px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>border-radius: 14px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>border: 1px solid rgba(255,255,255,.20);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>background: rgba(255,255,255,.10);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>color: rgba(255,255,255,.92);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>cursor:pointer;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>transition: transform .12s ease, background .12s ease;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>box-shadow: 0 10px 26px rgba(0,0,0,.22);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.btn:hover{ transform: translateY(-1px); background: rgba(214,74,106,.22); }</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.muted{ font-size: 12px; color: rgba(255,255,255,.70); }</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>/* 하단 도크 */</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.dock{</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>position:fixed;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>left: 0; right:0; bottom: 14px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>display:flex;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>justify-content:center;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>padding: 0 16px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>z-index: 50;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.dockInner{</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>width:min(720px, 100%);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>display:flex;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>justify-content:space-between;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>align-items:center;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>gap:10px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>padding: 12px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>border-radius: 999px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>background: rgba(0,0,0,.25);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>border: 1px solid rgba(255,255,255,.18);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>backdrop-filter: blur(12px);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>box-shadow: 0 18px 50px rgba(0,0,0,.35);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>color: rgba(255,255,255,.88);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.dockLeft{display:flex; gap:10px; align-items:center}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.dockRight{display:flex; gap:10px; align-items:center}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.iconBtn{</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>width: 42px; height: 42px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>border-radius: 999px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>display:grid;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>place-items:center;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>cursor:pointer;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>border: 1px solid rgba(255,255,255,.18);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>background: rgba(255,255,255,.10);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>transition: transform .12s ease, background .12s ease;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>user-select:none;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.iconBtn:hover{ transform: translateY(-1px); background: rgba(214,74,106,.22); }</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.count{ font-size: 12px; opacity:.9; }</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>/* 저장 리뷰 서랍 */</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.drawer{</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>position:fixed;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>left:0; right:0;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>bottom: 74px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>display:flex;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>justify-content:center;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>padding: 0 16px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>z-index: 60;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>pointer-events:none;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.drawerPanel{</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>width:min(720px, 100%);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>max-height: 52vh;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>overflow:auto;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>border-radius: 22px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>background: rgba(15,5,9,.62);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>border: 1px solid rgba(255,255,255,.18);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>backdrop-filter: blur(14px);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>box-shadow: var(--shadow);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>transform: translateY(12px);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>opacity:0;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>transition: opacity .18s ease, transform .18s ease;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>pointer-events:auto;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>display:none;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.drawerPanel.open{ display:block; opacity:1; transform: translateY(0); }</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.drawerHead{</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>padding: 14px 16px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>display:flex;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>align-items:center;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>justify-content:space-between;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>gap:10px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>color: rgba(255,255,255,.92);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>border-bottom: 1px solid rgba(255,255,255,.12);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.drawerHead strong{font-size: 14px}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.drawerList{ padding: 12px 14px 16px; }</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.reviewCard{</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>border-radius: 16px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>border: 1px solid rgba(255,255,255,.14);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>background: rgba(255,255,255,.08);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>padding: 12px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>margin-bottom: 10px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>color: rgba(255,255,255,.92);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.reviewCard .meta{</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>display:flex; justify-content:space-between; gap:10px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>font-size: 12px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>color: rgba(255,255,255,.72);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>margin-bottom: 6px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.reviewCard .text{ font-size: 13px; line-height: 1.45; white-space: pre-wrap; }</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>/* 토스트 */</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.toast{</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>position:fixed;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>top: 16px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>left:50%;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>transform: translateX(-50%);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>z-index: 80;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>background: rgba(0,0,0,.35);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>border: 1px solid rgba(255,255,255,.18);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>backdrop-filter: blur(12px);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>color: rgba(255,255,255,.92);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>padding: 10px 12px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>border-radius: 999px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>box-shadow: 0 18px 50px rgba(0,0,0,.35);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>opacity:0;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>pointer-events:none;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>transition: opacity .18s ease, transform .18s ease;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.toast.show{ opacity:1; transform: translateX(-50%) translateY(0); }</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;/style&gt;</span></p>
+<p class="p1"><span class="s1">&lt;/head&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">&lt;body&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;div class="bg" aria-hidden="true"&gt;&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;div class="grain" aria-hidden="true"&gt;&lt;/div&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;div class="toast" id="toast"&gt;&lt;/div&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;main class="wrap"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;header&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;div class="title"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;h1&gt;Open the Chocolates&lt;/h1&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;p class="sub"&gt;초콜릿을 눌러 편지를 하나씩 꺼내봐. 다 열면 시식평을 저장할 수 있어 🍫💌&lt;/p&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;div class="progress"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;div class="pill" id="openedCount"&gt;0 / 12 opened&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;div class="pill" id="statusPill"&gt;tap a chocolate&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;/header&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;section class="boxStage" aria-label="초콜릿 상자"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;div class="boxOverlay" aria-hidden="true"&gt;&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;div class="grid" id="grid"&gt;&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;/section&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;section class="reviewArea" id="reviewArea" aria-label="시식평 작성"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;div class="reviewHead"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;strong&gt;모든 초콜릿을 열었어! ⭐ 시식평을 남겨줘&lt;/strong&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;span class="muted"&gt;저장하면 아래 💬 에서 다시 확인 가능&lt;/span&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;div class="reviewBody"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;div class="stars"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>&lt;div class="starRow" id="starRow" aria-label="별점 선택"&gt;&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>&lt;div class="muted" id="starHint"&gt;별점을 선택해줘 (1~5)&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;textarea id="reviewText" placeholder="예) 겉은 바삭하고 안은 부드러워서… 패키지가 너무 귀여웠다…"&gt;&lt;/textarea&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;div class="actions"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>&lt;button class="btn" id="saveReview"&gt;저장하기&lt;/button&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>&lt;div class="muted" id="saveHint"&gt;localStorage에 저장돼서 새로고침해도 남아있어.&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;/section&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;/main&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;div class="dock" aria-label="하단 메뉴"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;div class="dockInner"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;div class="dockLeft"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;div class="iconBtn" id="resetBtn" title="다시 시작"&gt;↻&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;div class="count" id="dockCount"&gt;0 / 12&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;div class="dockRight"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;div class="iconBtn" id="commentsBtn" title="저장된 시식평 보기"&gt;💬&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;/div&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;div class="drawer" aria-hidden="false"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;div class="drawerPanel" id="drawerPanel" role="dialog" aria-label="저장된 시식평"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;div class="drawerHead"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;strong&gt;저장된 시식평&lt;/strong&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;button class="btn" id="closeDrawer" style="padding:8px 10px;border-radius:999px;"&gt;닫기&lt;/button&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;div class="drawerList" id="drawerList"&gt;&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;/div&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;script&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>// ====== 이미지/편지 데이터 ======</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>// 이미지 파일은 assets 폴더에: bg.jpg, box.jpg, heart.jpg, sweet.jpg, cake.jpg</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>const chocolates = [</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>{ img: "assets/heart.jpg", title: "Felt Heart", note: "오늘의 너는… 생각보다 더 따뜻했어.\n그게 참 고마워." },</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>{ img: "assets/sweet.jpg", title: "Sweet Tray", note: "달콤함은 작게, 진심은 크게.\n너에게는 늘 그랬어." },</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>{ img: "assets/box.jpg", title: "Heart Box", note: "선물은 모양보다 ‘꺼내보는 순간’이 더 기억에 남더라." },</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>{ img: "assets/cake.jpg", title: "Heart Cake", note: "한 입이면 충분해.\n‘괜찮아’라는 말 대신 이걸 줄게." },</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>{ img: "assets/heart.jpg", title: "Little Heart", note: "네가 좋아하던 것들,\n아직도 나는 다 기억해." },</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>{ img: "assets/sweet.jpg", title: "Pink Sweet", note: "달콤한 건 금방 사라져도,\n여운은 오래 남아." },</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>{ img: "assets/box.jpg", title: "Ribbon Bite", note: "리본은 풀어도 돼.\n대신 마음은 조심히 꺼내줘." },</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>{ img: "assets/cake.jpg", title: "Cherry Top", note: "마지막은 늘 체리처럼.\n딱 한 번 더 웃게 해주고 싶어." },</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>{ img: "assets/heart.jpg", title: "Stitched Love", note: "서툴러도 손으로 꿰맨 마음은\n쉽게 풀리지 않더라." },</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>{ img: "assets/sweet.jpg", title: "Soft Bite", note: "너무 달지만은 않게—\n그래도 행복은 충분히." },</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>{ img: "assets/box.jpg", title: "Final Piece", note: "여기까지 와줘서 고마워.\n이제 네 말도 들려줘." },</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>{ img: "assets/cake.jpg", title: "Aftertaste", note: "다 열어본 뒤의 여운은,\n네가 남기는 한 줄에 달려있어." },</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>];</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>const OPEN_KEY = "vday_opened_v2";</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>const REVIEWS_KEY = "vday_reviews_v2";</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>const grid = document.getElementById("grid");</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>const openedCount = document.getElementById("openedCount");</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>const dockCount = document.getElementById("dockCount");</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>const statusPill = document.getElementById("statusPill");</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>const reviewArea = document.getElementById("reviewArea");</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>const starRow = document.getElementById("starRow");</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>const starHint = document.getElementById("starHint");</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>const reviewText = document.getElementById("reviewText");</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>const saveReviewBtn = document.getElementById("saveReview");</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>const commentsBtn = document.getElementById("commentsBtn");</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>const drawerPanel = document.getElementById("drawerPanel");</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>const drawerList = document.getElementById("drawerList");</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>const closeDrawer = document.getElementById("closeDrawer");</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>const resetBtn = document.getElementById("resetBtn");</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>const toast = document.getElementById("toast");</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>let opened = new Set(loadOpened());</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>let currentStars = 0;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>function showToast(msg){</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>toast.textContent = msg;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>toast.classList.add("show");</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>clearTimeout(showToast._t);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>showToast._t = setTimeout(()=&gt; toast.classList.remove("show"), 1500);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>function loadOpened(){</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>try{</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>const raw = localStorage.getItem(OPEN_KEY);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>return raw ? JSON.parse(raw) : [];</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>}catch{ return []; }</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>function saveOpened(){</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>localStorage.setItem(OPEN_KEY, JSON.stringify([...opened]));</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>function loadReviews(){</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>try{</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>const raw = localStorage.getItem(REVIEWS_KEY);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>return raw ? JSON.parse(raw) : [];</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>}catch{ return []; }</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>function saveReviews(list){</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>localStorage.setItem(REVIEWS_KEY, JSON.stringify(list));</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>function updateCounts(){</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>const total = chocolates.length;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>const n = opened.size;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>openedCount.textContent = `${n} / ${total} opened`;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>dockCount.textContent = `${n} / ${total}`;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>statusPill.textContent = (n === total) ? "all opened ✓" : "tap a chocolate";</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>if(n === total) reviewArea.style.display = "block";</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>function renderGrid(){</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>grid.innerHTML = "";</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>chocolates.forEach((c, idx) =&gt; {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>const el = document.createElement("button");</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>el.type = "button";</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>el.className = "choco";</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>el.setAttribute("aria-label", `${c.title} 초콜릿 열기`);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>el.dataset.index = String(idx);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>el.dataset.open = opened.has(idx) ? "true" : "false";</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>el.innerHTML = `</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>&lt;span class="shine" aria-hidden="true"&gt;&lt;/span&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>&lt;img alt="${escapeHtml(c.title)}" src="${escapeHtml(c.img)}" /&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>&lt;div class="label"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;span class="badge"&gt;${escapeHtml(c.title)}&lt;/span&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;span class="openedTag"&gt;opened&lt;/span&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>&lt;div class="letterWrap" aria-hidden="true"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;div class="letter"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">              </span>&lt;h3&gt;&lt;span class="heartDot"&gt;&lt;/span&gt; ${escapeHtml(c.title)}&lt;/h3&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">              </span>&lt;p&gt;${escapeHtml(c.note)}&lt;/p&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">              </span>&lt;div class="hint"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;span&gt;편지 한 장 꺼냄&lt;/span&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;span&gt;&lt;span class="kbd"&gt;click&lt;/span&gt;로 다음&lt;/span&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">              </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>`;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>el.addEventListener("click", () =&gt; openChocolate(idx, el));</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>grid.appendChild(el);</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>if(opened.has(idx)){</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>requestAnimationFrame(() =&gt; el.classList.add("settled"));</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>});</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>function openChocolate(idx, el){</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>if(opened.has(idx)){</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>showToast("이미 열어본 초콜릿이야 💌");</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>return;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>opened.add(idx);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>saveOpened();</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>el.dataset.open = "true";</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>setTimeout(()=&gt; el.classList.add("settled"), 680);</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>updateCounts();</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>if(opened.size === chocolates.length){</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>showToast("전부 열었어! 이제 시식평을 남겨줘 ⭐");</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>setTimeout(()=&gt; reviewArea.scrollIntoView({behavior:"smooth", block:"start"}), 350);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>}else{</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>showToast("편지를 꺼냈어 🍫");</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>function renderStars(){</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>starRow.innerHTML = "";</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>for(let i=1;i&lt;=5;i++){</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>const b = document.createElement("button");</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>b.type="button";</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>b.className="starBtn";</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>b.textContent="★";</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>b.setAttribute("aria-label", `${i}점`);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>b.addEventListener("click", ()=&gt; setStars(i));</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>starRow.appendChild(b);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>syncStars();</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>function setStars(n){</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>currentStars = n;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>syncStars();</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>starHint.textContent = `${n} / 5`;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>function syncStars(){</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>[...starRow.children].forEach((btn, i)=&gt;{</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>btn.classList.toggle("active", i &lt; currentStars);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>});</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>function renderDrawer(){</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>const list = loadReviews();</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>drawerList.innerHTML = "";</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>if(list.length === 0){</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>drawerList.innerHTML = `</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>&lt;div class="reviewCard"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;div class="meta"&gt;&lt;span&gt;아직 저장된 시식평이 없어&lt;/span&gt;&lt;span&gt;💬&lt;/span&gt;&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;div class="text"&gt;모든 초콜릿을 열고 별점+후기를 저장해봐.&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>`;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>return;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>list.slice().reverse().forEach(item=&gt;{</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>const card = document.createElement("div");</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>card.className = "reviewCard";</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>card.innerHTML = `</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>&lt;div class="meta"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;span&gt;${"★".repeat(item.stars)}${"☆".repeat(5-item.stars)}&lt;/span&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;span&gt;${new Date(item.createdAt).toLocaleString()}&lt;/span&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>&lt;div class="text"&gt;${escapeHtml(item.text)}&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>`;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>drawerList.appendChild(card);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>});</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>function saveReview(){</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>if(opened.size !== chocolates.length){</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>showToast("아직 모든 초콜릿을 열지 않았어!");</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>return;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>if(currentStars === 0){</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>showToast("별점을 먼저 선택해줘 ⭐");</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>return;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>const text = reviewText.value.trim();</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>if(!text){</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>showToast("시식평을 한 줄이라도 적어줘!");</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>return;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>const list = loadReviews();</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>list.push({ stars: currentStars, text, createdAt: Date.now() });</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>saveReviews(list);</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>reviewText.value = "";</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>currentStars = 0;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>syncStars();</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>starHint.textContent = "저장됨 ✓";</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>showToast("시식평을 저장했어 💬");</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>renderDrawer();</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>function toggleDrawer(force){</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>const wantOpen = (typeof force === "boolean") ? force : !drawerPanel.classList.contains("open");</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>if(wantOpen){</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>renderDrawer();</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>drawerPanel.classList.add("open");</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>}else{</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>drawerPanel.classList.remove("open");</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>function resetAll(){</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>opened = new Set();</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>localStorage.removeItem(OPEN_KEY);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>renderGrid();</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>updateCounts();</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>showToast("처음부터 다시 🍫");</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>window.scrollTo({top:0, behavior:"smooth"});</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>function escapeHtml(s){</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>return String(s)</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.replaceAll("&amp;","&amp;amp;")</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.replaceAll("&lt;","&amp;lt;")</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.replaceAll("&gt;","&amp;gt;")</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.replaceAll('"',"&amp;quot;")</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.replaceAll("'","&amp;#039;");</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>renderGrid();</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>renderStars();</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>updateCounts();</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>renderDrawer();</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>saveReviewBtn.addEventListener("click", saveReview);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>commentsBtn.addEventListener("click", ()=&gt; toggleDrawer());</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>closeDrawer.addEventListener("click", ()=&gt; toggleDrawer(false));</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>resetBtn.addEventListener("click", resetAll);</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>window.addEventListener("keydown", (e)=&gt;{</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>if(e.key === "Escape") toggleDrawer(false);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>});</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;/script&gt;</span></p>
+<p class="p1"><span class="s1">&lt;/body&gt;</span></p>
+<p class="p1"><span class="s1">&lt;/html&gt;</span></p>
+</body>
+</html>
